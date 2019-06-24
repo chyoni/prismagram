@@ -1,0 +1,61 @@
+# 하나 안좋은건 prisma가 가지고있는 모델을 아직 graphql자체에서 사용하기 위한 호환모듈이 없음
+# 그래서 이렇게 구조체들을 복사해서 graphql 확장자로 만들어준 상태에서
+# 우리 서버에서 실행을 하면 우리 서버가 prisma로 요청을 하는건데 그거를 위해 이 파일을 만들어야함
+# 그래서 directive 명령들 (@~~~) 다 지워줘야함 왜냐면 그건 prisma 문법이기 때문에 graphql이 인식못함
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  firstName: String
+  lastName: String
+  bio: String
+  following: [User!]!
+  followers: [User!]!
+  posts: [Post!]!
+  likes: [Like!]!
+  comments: [Comment!]!
+  room: [Room!]!
+}
+
+type Post {
+  id: ID!
+  location: String
+  caption: String!
+  user: User!
+  files: [File!]!
+  likes: [Like!]!
+  comments: [Comment!]!
+}
+
+type Like {
+  id: ID!
+  user: User!
+  post: Post!
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  user: User!
+  post: Post!
+}
+
+type File {
+  id: ID!
+  url: String!
+  post: Post!
+}
+
+type Room {
+  id: ID!
+  participants: [User!]!
+  messages: [Message!]!
+}
+
+type Message {
+  id: ID!
+  text: String!
+  from: User!
+  to: User!
+  room: Room!
+}
