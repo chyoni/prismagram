@@ -17,3 +17,5 @@ prisma가 내 서버와 연동될려면 generate을 해야함
 하게되면 prisma-client가 생성됨
 
 Query가 하나도 없으면 에러가 생김 스키마에서 쿼리 하나는 무조건 있어야함
+
+sendgrid 와 nodemailer 를 이용해 시크릿키를 메일로 보냄
