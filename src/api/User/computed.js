@@ -1,4 +1,4 @@
-import { prisma } from "../../generated/prisma-client";
+import { prisma } from "../../../generated/prisma-client";
 
 //여기서 밑에 parent는 자기를 사용하는 resolver를 말함
 //me라는 resolver가 fullName을 호출하면 me가 parent고
@@ -29,15 +29,6 @@ export default {
       const { user } = request;
       const { id: parentId } = parent;
       return user.id === parentId;
-    }
-  },
-  Post: {
-    isLiked: (parent, _, { request }) => {
-      const { user } = request;
-      const { id } = parent;
-      return prisma.$exists.like({
-        AND: [{ user: { id: user.id } }, { post: { id } }]
-      });
     }
   }
 };

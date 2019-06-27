@@ -64,3 +64,28 @@ export const FULL_POST = `
         }
     }
 `;
+
+export const ROOM_FRAGMENT = `
+    fragment RoomParts on Room {
+        id
+        participants {
+            id
+            username
+            avatar
+        }
+        messages {
+            id
+            text
+            from {
+                id
+                username
+                avatar
+            }
+            to {
+                id
+                username
+                avatar
+            }
+        }
+    }
+`;
