@@ -35,8 +35,10 @@ export const FULL_POST = `
         id
         location
         caption
+        createdAt
         user {
             id
+            avatar
             username
         }
         files {
@@ -50,8 +52,10 @@ export const FULL_POST = `
         comments {
             id
             text
+            createdAt
             user {
                 id
+                avatar
                 username 
             }
         }
@@ -59,6 +63,7 @@ export const FULL_POST = `
             id 
             user {
                 id
+                avatar
                 username
             }
         }
@@ -86,6 +91,16 @@ export const ROOM_FRAGMENT = `
                 username
                 avatar
             }
+        }
+    }
+`;
+
+export const COMMENT_FRAGMENT = `
+    fragment CommentParts on Comment {
+        id
+        text
+        user {
+            username
         }
     }
 `;
