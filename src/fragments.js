@@ -8,6 +8,7 @@ export const USER_FRAGMENT = `
     fragment UserParts on User {
         id
         username
+        avatar
         email
         firstName
         lastName

@@ -9,6 +9,14 @@ export default {
         AND: [{ user: { id: user.id } }, { post: { id } }]
       });
     },
+    commentCount: parent => {
+      return prisma
+        .commentsConnection({
+          where: { post: { id: parent.id } }
+        })
+        .aggregate()
+        .count();
+    },
     likeCount: parent =>
       prisma
         .likesConnection({
