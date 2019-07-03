@@ -19,11 +19,15 @@ export const USER_FRAGMENT = `
         }
         following {
             id
-            username 
+            username
+            avatar
+            bio 
         }
         followers {
             id 
             username
+            avatar
+            bio
         }
     }
 `;
