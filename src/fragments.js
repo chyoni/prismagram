@@ -108,5 +108,43 @@ export const COMMENT_FRAGMENT = `
             avatar
             username
         }
+        post {
+            user {
+                id
+            }
+        }
+    }
+`;
+
+export const LIKE_FRAGMENT = `
+    post {
+        user {
+            id
+        }
+    }
+`;
+
+export const NOTIFICATION_FRAGMENT = `
+    fragment NotificationParts on Notification {
+        id
+        createdAt
+        from {
+            id
+            avatar
+            username 
+        }
+        to {
+            id
+            avatar
+            username
+        }
+        type
+        post {
+            id
+            files {
+                id
+                url 
+            }
+        } 
     }
 `;

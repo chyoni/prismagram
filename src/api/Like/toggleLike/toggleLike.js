@@ -1,5 +1,7 @@
 import { isAuthenticated } from "../../../middlewares";
 import { prisma } from "../../../../generated/prisma-client";
+import { LIKE_FRAGMENT, FULL_POST } from "../../../fragments";
+import createNotification from "../../Notification/createNotification";
 
 export default {
   Mutation: {
@@ -42,9 +44,21 @@ export default {
               }
             }
           });
+          const creatorOfPost = await prisma
+            .post({ id: postId })
+            .$fragment(FULL_POST);
+          if (user.id !== creatorOfPost.user.id) {
+            await createNotification(
+              user.id,
+              creatorOfPost.user.id,
+              "LIKE",
+              postId
+            );
+          }
         }
         return true;
-      } catch {
+      } catch (e) {
+        console.log(e);
         return false;
       }
     }

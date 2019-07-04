@@ -12,6 +12,7 @@ type User {
   likes: [Like!]! @relation(name: "LikeOfUser", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentOfUser", onDelete: CASCADE)
   room: [Room!]! @relation(name: "RoomOfUser", onDelete: CASCADE)
+  note: [Notification!]! @relation(name: "ToNoteOfUser", onDelete: CASCADE) 
   loginSecret: String
   createdAt: DateTime! @createdAt 
   updatedAt: DateTime! @updatedAt
@@ -25,6 +26,17 @@ type Post {
   files: [File!]! @relation(name: "FileToPost", onDelete: CASCADE)
   likes: [Like!]! @relation(name: "LikeToPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentToPost", onDelete: CASCADE)
+  note:[Notification!]! @relation(name: "NoteToPost", onDelete:CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Notification {
+  id: ID! @id
+  from: User! @relation(name:"FromNoteOfUser")
+  to: User! @relation(name:"ToNoteOfUser")
+  type: String! 
+  post: Post @relation(name:"NoteToPost")
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

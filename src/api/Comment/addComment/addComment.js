@@ -1,6 +1,7 @@
 import { isAuthenticated } from "../../../middlewares";
 import { prisma } from "../../../../generated/prisma-client";
 import { COMMENT_FRAGMENT } from "../../../fragments";
+import createNotification from "../../Notification/createNotification";
 
 export default {
   Mutation: {
@@ -23,6 +24,14 @@ export default {
           text
         })
         .$fragment(COMMENT_FRAGMENT);
+      if (user.id !== comment.post.user.id) {
+        await createNotification(
+          user.id,
+          comment.post.user.id,
+          "COMMENT",
+          postId
+        );
+      }
       return comment;
     }
   }
