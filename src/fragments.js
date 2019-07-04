@@ -105,6 +105,7 @@ export const COMMENT_FRAGMENT = `
         id
         text
         user {
+            avatar
             username
         }
     }
