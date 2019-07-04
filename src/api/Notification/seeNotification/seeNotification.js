@@ -3,11 +3,17 @@ import { NOTIFICATION_FRAGMENT } from "../../../fragments";
 
 export default {
   Query: {
-    seeNotification: (_, __, { request, isAuthenticated }) => {
+    seeNotification: (_, args, { request, isAuthenticated }) => {
       isAuthenticated(request);
-      const { user } = request;
+      const { username } = args;
       return prisma
-        .notifications({ username: user.username })
+        .notifications({
+          where: {
+            to: {
+              username
+            }
+          }
+        })
         .$fragment(NOTIFICATION_FRAGMENT);
     }
   }

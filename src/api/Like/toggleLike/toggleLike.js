@@ -1,6 +1,6 @@
 import { isAuthenticated } from "../../../middlewares";
 import { prisma } from "../../../../generated/prisma-client";
-import { LIKE_FRAGMENT, FULL_POST } from "../../../fragments";
+import { FULL_POST } from "../../../fragments";
 import createNotification from "../../Notification/createNotification";
 
 export default {
