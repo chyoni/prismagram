@@ -8,7 +8,7 @@ export default {
       const user = await prisma.user({ username }).$fragment(USER_FRAGMENT);
       const posts = await prisma
         .user({ username })
-        .posts()
+        .posts({ orderBy: "createdAt_DESC" })
         .$fragment(FULL_POST);
       return {
         user,

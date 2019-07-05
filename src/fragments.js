@@ -117,9 +117,11 @@ export const COMMENT_FRAGMENT = `
 `;
 
 export const LIKE_FRAGMENT = `
-    post {
+    fragment LikesParts on Like {
         user {
             id
+            username
+            avatar
         }
     }
 `;
