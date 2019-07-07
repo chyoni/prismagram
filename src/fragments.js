@@ -122,6 +122,7 @@ export const LIKE_FRAGMENT = `
             id
             username
             avatar
+            bio
         }
     }
 `;
