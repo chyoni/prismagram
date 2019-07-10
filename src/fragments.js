@@ -16,6 +16,9 @@ export const USER_FRAGMENT = `
         posts {
             id
             caption
+            files {
+                url
+            }
         }
         following {
             id
