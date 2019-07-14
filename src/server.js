@@ -5,6 +5,7 @@ import schema from "./schema";
 import "./passport";
 import { authenticateJwt } from "./passport";
 import { isAuthenticated } from "./middlewares";
+import { uploadMiddleware, uploadController } from "./upload";
 
 const PORT = process.env.PORT || 4000;
 
@@ -17,7 +18,7 @@ const server = new GraphQLServer({
 
 server.express.use(logger("dev")); //미들웨어 추가 (graphql server는 express서버가 내장되어있음)
 server.express.use(authenticateJwt); //모든 경로를 jwt로 보호하겠다는 의미임 즉 jwt토큰으로 부터 사용자를 인증해야한다는 소리
-
+server.express.post("/api/upload", uploadMiddleware, uploadController);
 server.start({ port: PORT }, () =>
   console.log(`😍  Server running on Port http://localhost:${PORT}`)
 );
