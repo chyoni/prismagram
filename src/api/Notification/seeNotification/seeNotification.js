@@ -12,7 +12,8 @@ export default {
             to: {
               username
             }
-          }
+          },
+          orderBy: "createdAt_DESC"
         })
         .$fragment(NOTIFICATION_FRAGMENT);
     }

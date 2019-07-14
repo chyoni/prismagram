@@ -72,6 +72,7 @@ export const FULL_POST = `
             user {
                 id
                 avatar
+                bio
                 username
             }
         }
